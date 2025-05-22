@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi import WebSocket, WebSocketDisconnect
+from fastapi import WebSocket, WebSocketDisconnect, HTTPException, status
 from typing import List
 from app.models.user import User
 from app.models.chat import Chat, ChatType
@@ -98,4 +98,4 @@ class ChatService:
                         )
 
         except WebSocketDisconnect:
-            manager.disconnect(user_id) 
+            await manager.disconnect(user_id) 
